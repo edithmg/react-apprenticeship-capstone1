@@ -1,58 +1,34 @@
-import React, { useLayoutEffect } from 'react';
+import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
-import AuthProvider from '../../providers/Auth';
+import { Auth0Provider } from '@auth0/auth0-react';
+import { GlobalProvider } from '../../context/GlobalContext';
 import HomePage from '../../pages/Home';
-import LoginPage from '../../pages/Login';
 import NotFound from '../../pages/NotFound';
-import SecretPage from '../../pages/Secret';
-import Private from '../Private';
-import Fortune from '../Fortune';
-import Layout from '../Layout';
-import { random } from '../../utils/fns';
+import DetailPage from '../../pages/Detail';
+import GlobalStyles from '../../GlobalStyles';
+import Navbar from '../Layout/Navbar';
 
-function App() {
-  useLayoutEffect(() => {
-    const { body } = document;
-
-    function rotateBackground() {
-      const xPercent = random(100);
-      const yPercent = random(100);
-      body.style.setProperty('--bg-position', `${xPercent}% ${yPercent}%`);
-    }
-
-    const intervalId = setInterval(rotateBackground, 3000);
-    body.addEventListener('click', rotateBackground);
-
-    return () => {
-      clearInterval(intervalId);
-      body.removeEventListener('click', rotateBackground);
-    };
-  }, []);
-
+const App = () => {
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <Layout>
+      <GlobalProvider>
+        <Auth0Provider
+          domain={process.env.REACT_APP_AUTH_DOMAIN}
+          clientId={process.env.REACT_APP_AUTH_CLIENT_ID}
+          redirectUri={window.location.origin}
+          cacheLocation="localstorage"
+        >
+          <GlobalStyles />
+          <Navbar />
           <Switch>
-            <Route exact path="/">
-              <HomePage />
-            </Route>
-            <Route exact path="/login">
-              <LoginPage />
-            </Route>
-            <Private exact path="/secret">
-              <SecretPage />
-            </Private>
-            <Route path="*">
-              <NotFound />
-            </Route>
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/:id" component={DetailPage} />
+            <Route path="*" component={NotFound} />
           </Switch>
-          <Fortune />
-        </Layout>
-      </AuthProvider>
+        </Auth0Provider>
+      </GlobalProvider>
     </BrowserRouter>
   );
-}
+};
 
 export default App;
