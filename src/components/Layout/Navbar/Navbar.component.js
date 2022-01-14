@@ -43,7 +43,7 @@ const Navbar = () => {
             <Searchbar />
             {isAuthenticated && (
               <MenuItem>
-                <MenuLink to="/about">Favorites</MenuLink>
+                <MenuLink to="/favorites">Favorites</MenuLink>
               </MenuItem>
             )}
 

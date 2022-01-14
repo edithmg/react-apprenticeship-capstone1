@@ -24,14 +24,14 @@ export const GlobalProvider = ({ children }) => {
       const response = await axios.get(YT_BASE_URL, {
         params: {
           part: 'snippet',
-          maxResults: 12,
-          key: 'AIzaSyAZM5nvs9yK0WJJ45B0Aplxo-0465B3XO0',
+          maxResults: 16,
+          key: process.env.REACT_APP_YT_APIKEY,
           q: searchTerm,
         },
         signal: controller.signal,
       });
       const items = response.data.items;
-      console.log(items);
+
       const filterOnlyVideos = items.filter((video) => {
         return video.id.kind === 'youtube#video';
       });
