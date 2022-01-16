@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { VideoContainer } from './VideoList.styles';
-import VideoCard from '../VideoCard/VideoCard.component';
+import VideoCard from '../VideoCard';
 import { useGlobalcontext } from '../../context/GlobalContext';
 
 const VideoList = () => {

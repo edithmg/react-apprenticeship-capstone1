@@ -3,9 +3,13 @@ import { Star } from './FavButton.styles';
 import { BiDislike, BiLike } from 'react-icons/bi';
 
 const FavButton = (item) => {
+  let isFavorite = false;
   let favorites = [];
   if (localStorage.getItem('favorites')) {
     favorites = JSON.parse(localStorage.getItem('favorites'));
+  }
+  if (favorites.find((i) => i.videoId === item.id.videoId)) {
+    isFavorite = true;
   }
 
   const addVideo = () => {
@@ -21,12 +25,17 @@ const FavButton = (item) => {
 
   return (
     <>
-      <Star title="Add to favorites">
-        <BiLike onClick={addVideo} />
-      </Star>
-      <Star title="Remove">
-        <BiDislike onClick={removeVideo} />
-      </Star>
+      {!isFavorite && (
+        <Star title="Add to favorites">
+          <BiLike onClick={addVideo} />
+        </Star>
+      )}
+
+      {isFavorite && (
+        <Star title="Remove from favorites">
+          <BiDislike onClick={removeVideo} />
+        </Star>
+      )}
     </>
   );
 };
