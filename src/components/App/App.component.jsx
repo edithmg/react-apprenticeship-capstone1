@@ -5,6 +5,7 @@ import { GlobalProvider } from '../../context/GlobalContext';
 import HomePage from '../../pages/Home';
 import NotFound from '../../pages/NotFound';
 import DetailPage from '../../pages/Detail';
+import FavoritesPage from '../../pages/Favorites';
 import GlobalStyles from '../../GlobalStyles';
 import Navbar from '../Layout/Navbar';
 
@@ -22,7 +23,8 @@ const App = () => {
           <Navbar />
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route exact path="/:id" component={DetailPage} />
+            <Route path="/watch/:id" component={DetailPage} />
+            <Route path="/favorites" component={FavoritesPage} />
             <Route path="*" component={NotFound} />
           </Switch>
         </Auth0Provider>

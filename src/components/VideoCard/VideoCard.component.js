@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { truncateString } from '../../utils/fns';
 import Card from './VideoCard.styles';
-import { useGlobalcontext } from '../../context/GlobalContext';
+//import { useGlobalcontext } from '../../context/GlobalContext';
 
 const StyledCardBody = styled.div`
   padding: 50px 12px;
@@ -16,7 +16,6 @@ const StyledCardContainer = styled.div`
 `;
 
 const VideoCard = (item) => {
-  const { singleVideoSelect } = useGlobalcontext();
   return (
     <StyledCardBody>
       <StyledCardContainer>
@@ -26,7 +25,6 @@ const VideoCard = (item) => {
           date={item.snippet.date}
           description={truncateString(item.snippet.description, 120)}
           photo_url={item.snippet.thumbnails.medium.url}
-          onClick={() => singleVideoSelect(item)}
         />
       </StyledCardContainer>
     </StyledCardBody>

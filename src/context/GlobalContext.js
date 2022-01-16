@@ -2,15 +2,12 @@ import axios from 'axios';
 import React, { createContext, useContext, useReducer } from 'react';
 import globalReducer from '../reducers/globalReducer';
 import { YT_BASE_URL } from '../utils/constants';
-import { GET_VIDEOS } from '../utils/actions';
+import { GET_VIDEOS, GET_SELECTED_VIDEO } from '../utils/actions';
 
 const initialState = {
   videos_loading: false,
   videos_error: false,
   videos: [],
-  selected_video_loading: false,
-  selected_video_error: false,
-  selected_video: '',
 };
 
 export const GlobalContext = createContext();
@@ -44,11 +41,17 @@ export const GlobalProvider = ({ children }) => {
     };
   };
 
+  // Selected Video
+  const singleVideoSelect = (selected_video) => {
+    dispatch({ type: GET_SELECTED_VIDEO, payload: selected_video });
+  };
+
   return (
     <GlobalContext.Provider
       value={{
         ...state,
         fetchVideos,
+        singleVideoSelect,
       }}
     >
       {children}

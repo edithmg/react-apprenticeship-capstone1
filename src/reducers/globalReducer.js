@@ -1,8 +1,4 @@
-import {
-  GET_VIDEOS,
-  GET_SINGLE_VIDEO,
-  GET_SELECTED_VIDEO,
-} from '../utils/actions';
+import { GET_VIDEOS, GET_SELECTED_VIDEO } from '../utils/actions';
 
 const globalReducer = (state, action) => {
   switch (action.type) {
@@ -11,16 +7,13 @@ const globalReducer = (state, action) => {
         ...state,
         videos: action.payload,
       };
-    case GET_SELECTED_VIDEO:
+    case GET_SELECTED_VIDEO: {
       return {
         ...state,
-        selected_video: action.payload,
+        video: action.payload,
       };
-    case GET_SINGLE_VIDEO:
-      return {
-        ...state,
-        selected_video: action.payload,
-      };
+    }
+
     default:
       return state;
   }
