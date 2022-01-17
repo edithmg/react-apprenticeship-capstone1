@@ -1,7 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;800;900&family=Rubik:wght@800&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -22,8 +21,13 @@ body {
     font-weight: 400;
     line-height: 1.5;
     font-size: 1.4rem;
-    background: #fff;
-    color: #333;
+    background: ${({ theme }) => theme.background};
+     color: ${({ theme }) => theme.color};
+}
+h1,h2,h3,h4,h5,h6 {
+  color: ${({ theme }) => theme.headings};
+  transition: ${({ theme }) => theme.transitionTime};;
+  
 }
 `;
 
@@ -51,8 +55,8 @@ export const Container = styled.section`
 
 export const Button = styled.button`
   border-radius: ${({ bigRadius }) => (bigRadius ? '30px' : '20px')};
-  background-color: ${({ primary }) => (primary ? '#fff' : '#000')};
-  color: ${({ primary }) => (primary ? '#000' : '#fff')};
+  background: ${({ theme }) => theme.buttonBg};
+  color: ${({ theme }) => theme.color};
   padding: ${({ big }) => (big ? '18px 30px' : '10px 28px')};
   font-size: ${({ bigFont }) => (bigFont ? '20px' : '18px')};
   outline: none;
@@ -60,7 +64,6 @@ export const Button = styled.button`
   border: none;
   transition: all 0.5s ease;
   &:hover {
-    background-color: ${({ primary }) => (primary ? '#fff' : '#000')};
     transform: translateY(-0.5rem) scale(1.02);
     color: #000;
   }

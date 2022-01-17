@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const DetailWrapper = styled.main`
+export const DetailWrapper = styled.section`
   text-align: center;
   margin: 0 auto;
   display: flex;

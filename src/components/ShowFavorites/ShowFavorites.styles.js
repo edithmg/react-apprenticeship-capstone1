@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const VideoContainer = styled.section`
+export const FavContainer = styled.section`
   text-align: center;
   margin: 0 auto;
   display: flex;

@@ -1,7 +1,8 @@
 import {
   GET_VIDEOS,
-  GET_SINGLE_VIDEO,
   GET_SELECTED_VIDEO,
+  LIGHTMODE,
+  DARKMODE,
 } from '../utils/actions';
 
 const globalReducer = (state, action) => {
@@ -11,16 +12,17 @@ const globalReducer = (state, action) => {
         ...state,
         videos: action.payload,
       };
-    case GET_SELECTED_VIDEO:
+    case GET_SELECTED_VIDEO: {
       return {
         ...state,
-        selected_video: action.payload,
+        video: action.payload,
       };
-    case GET_SINGLE_VIDEO:
-      return {
-        ...state,
-        selected_video: action.payload,
-      };
+    }
+    case LIGHTMODE:
+      return { darkMode: false };
+    case DARKMODE:
+      return { darkMode: true };
+
     default:
       return state;
   }
