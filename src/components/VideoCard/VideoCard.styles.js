@@ -5,9 +5,8 @@ import { Link } from 'react-router-dom';
 const StyledContent = styled.div`
   width: 300px;
   padding: 25px 12px 18px;
-  background: #fff;
+  background: ${({ theme }) => theme.background};
   :hover {
-    background: #e0eaf8;
     cursor: pointer;
   }
 `;
@@ -19,7 +18,7 @@ const StyledPhoto = styled.img`
 `;
 
 const Title = styled.h2`
-  color: #111823;
+  color: ${({ theme }) => theme.color};
   font-weight: 300;
   @media (max-width: 500px) {
     font-size: 1.2rem;
@@ -34,7 +33,7 @@ const Date = styled.div`
   }
 `;
 const Description = styled.p`
-  color: #222529;
+  color: ${({ theme }) => theme.color};
   font-weight: 300;
   @media (max-width: 500px) {
     font-size: 0.85rem;

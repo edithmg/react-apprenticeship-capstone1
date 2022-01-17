@@ -5,9 +5,10 @@ export const MenuSearchForm = styled.form`
   height: 40px;
   padding: 2px;
   background: #1e232b;
-  min-width: 45% !important;
+  min-width: 35% !important;
   border-radius: 2px;
   border: 1px solid rgba(155, 155, 155, 0.2);
+  margin-left: 3rem;
 
   @media only screen and (max-width: 1000px) {
     margin-top: 20px;

@@ -12,7 +12,6 @@ const StyledCardContainer = styled.div`
   width: 100%;
   margin: auto;
   border-radius: 10px;
-  box-shadow: 10px 5px 5px #d3d3d4;
 `;
 
 const VideoCard = (item) => {

@@ -8,6 +8,7 @@ const initialState = {
   videos_loading: false,
   videos_error: false,
   videos: [],
+  darkMode: false,
 };
 
 export const GlobalContext = createContext();
