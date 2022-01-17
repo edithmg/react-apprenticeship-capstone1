@@ -4,6 +4,7 @@ import DetailPage from '../pages/Detail';
 import FavoritesPage from '../pages/Favorites';
 import HomePage from '../pages/Home';
 import NotFound from '../pages/NotFound';
+import SecretPage from '../pages/Secret';
 
 const Routes = () => {
   return (
@@ -12,7 +13,7 @@ const Routes = () => {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/watch/:id" component={DetailPage} />
-          <Route path="/favorites" component={FavoritesPage} />
+          <SecretPage path="/favorites" component={FavoritesPage} />
           <Route path="*" component={NotFound} />
         </Switch>
       </BrowserRouter>
