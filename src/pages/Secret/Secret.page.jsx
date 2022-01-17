@@ -1,17 +1,24 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react';
+import { Link } from 'react-router-dom';
 
-const SecretPage = ({ children, ...rest }) => {
-  const { user } = useAuth0();
-
+function SecretPage() {
   return (
-    <Route
-      {...rest}
-      render={() => {
-        return user ? children : <Redirect to="/"></Redirect>;
-      }}
-    ></Route>
+    <section>
+      <pre>
+        welcome, voyager...
+        <Link to="/"> ← go back</Link>
+      </pre>
+      <iframe
+        width="800"
+        height="450"
+        allowFullScreen
+        frameBorder="0"
+        title="rick roll"
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&autoplay=1"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+      />
+    </section>
   );
-};
+}
+
 export default SecretPage;

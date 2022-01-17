@@ -25,7 +25,6 @@ const Navbar = ({ children }) => {
         <NavContainer>
           <Logo href="/">
             <NavIcon />
-            WZL Player
           </Logo>
           <Searchbar />
           <Menu isOpen={isOpen}>
