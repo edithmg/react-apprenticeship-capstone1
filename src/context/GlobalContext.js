@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { createContext, useContext, useReducer } from 'react';
 import globalReducer from '../reducers/globalReducer';
-import { YT_BASE_URL } from '../utils/constants';
 import { GET_VIDEOS, GET_SELECTED_VIDEO } from '../utils/actions';
 
 const initialState = {
@@ -18,8 +17,9 @@ export const GlobalProvider = ({ children }) => {
   //fetching videos
   const fetchVideos = async (searchTerm) => {
     const controller = new AbortController();
+    const url = process.env.REACT_APP_YT_BASE_URL;
     try {
-      const response = await axios.get(YT_BASE_URL, {
+      const response = await axios.get(url, {
         params: {
           part: 'snippet',
           maxResults: 16,
