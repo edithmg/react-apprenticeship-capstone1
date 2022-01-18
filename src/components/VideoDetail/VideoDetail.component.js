@@ -7,6 +7,7 @@ import {
   VideoInfo,
   RelatedVideos,
   SelectedVideo,
+  RVTitle,
 } from './VideoDetail.styles';
 import VideoCard from '../VideoCard/VideoCard.component';
 import { useGlobalcontext } from '../../context/GlobalContext';
@@ -32,6 +33,7 @@ const VideoDetail = () => {
   }, [videos_error]);
 
   if (!selected_video) {
+    console.log('here');
     return null;
   }
 
@@ -39,10 +41,12 @@ const VideoDetail = () => {
 
   return (
     <DetailWrapper>
-      <SelectedVideo>
+      <SelectedVideo aria-label="Selected video">
         <VideoPlayer src={videoSrc} />
         <VideoInfo>
-          <h3>{selected_video.snippet.title}</h3>
+          <h3 aria-label={selected_video.snippet.title}>
+            {selected_video.snippet.title}
+          </h3>
           <h3>Channel: {selected_video.snippet.channelTitle}</h3>
           <h3>Description: {selected_video.snippet.description}</h3>
           <h3>{isAuthenticated && <FavButton {...selected_video} />}</h3>
@@ -50,7 +54,7 @@ const VideoDetail = () => {
       </SelectedVideo>
 
       <RelatedVideos>
-        <h2>Related videos</h2>
+        <RVTitle>Related videos</RVTitle>
         {related.map((item) => (
           <VideoCard key={item.id.videoId} {...item} />
         ))}

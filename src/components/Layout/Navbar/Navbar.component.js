@@ -16,6 +16,7 @@ import {
 const Navbar = ({ children }) => {
   //auth
   const { isAuthenticated } = useAuth0();
+  //console.log(isAuthenticated);
 
   const [isOpen, setIsOpen] = useState(false);
 

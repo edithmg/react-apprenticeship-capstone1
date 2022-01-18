@@ -16,6 +16,7 @@ export const GlobalProvider = ({ children }) => {
 
   //fetching videos
   const fetchVideos = async (searchTerm) => {
+    //console.log(searchTerm);
     const controller = new AbortController();
     const url = process.env.REACT_APP_YT_BASE_URL;
     try {
@@ -23,7 +24,7 @@ export const GlobalProvider = ({ children }) => {
         params: {
           part: 'snippet',
           maxResults: 16,
-          key: process.env.REACT_APP_YT_APIKEY,
+          key: 'AIzaSyCH0A-V7fWXozsT1ej1dJVi2qqXpCT3ms4',
           q: searchTerm,
         },
         signal: controller.signal,

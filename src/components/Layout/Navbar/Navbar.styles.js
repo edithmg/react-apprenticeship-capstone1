@@ -70,6 +70,7 @@ export const Menu = styled.div`
     overflow: hidden;
     width: 100%;
     margin-right: -30px;
+    margin-top: -85px;
     opacity: ${({ isOpen }) => (isOpen ? '1' : '0')};
     height: ${({ isOpen }) => (isOpen ? '150px' : '0px')};
   }
