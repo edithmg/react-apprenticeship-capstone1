@@ -10,9 +10,11 @@ const ShowFavorites = () => {
 
   return (
     <FavContainer>
-      {favorites.map((item) => (
-        <VideoCard key={item.videoId} {...item.info} />
-      ))}
+      {favorites.length < 1 ? (
+        <h2>No videos in your favorites yet!</h2>
+      ) : (
+        favorites.map((item) => <VideoCard key={item.videoId} {...item.info} />)
+      )}
     </FavContainer>
   );
 };

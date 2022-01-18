@@ -1,18 +1,27 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 
-import { useAuth } from '../../providers/Auth';
-
-// eslint-disable-next-line react/prop-types
-function Private({ children, ...rest }) {
-  const { authenticated } = useAuth();
+const Private = ({ children, ...rest }) => {
+  const { authenticated } = useAuth0();
 
   return (
     <Route
       {...rest}
-      render={() => (authenticated ? children : <Redirect to="/" />)}
+      render={({ location }) =>
+        authenticated ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: '/',
+              state: { from: location },
+            }}
+          />
+        )
+      }
     />
   );
-}
+};
 
 export default Private;
