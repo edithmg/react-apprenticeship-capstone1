@@ -11,7 +11,7 @@ export const MenuSearchForm = styled.form`
   margin-left: 3rem;
 
   @media only screen and (max-width: 1000px) {
-    margin-top: 20px;
+    margin-top: 10px;
   }
 `;
 

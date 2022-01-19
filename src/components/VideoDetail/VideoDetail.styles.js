@@ -40,3 +40,7 @@ export const RelatedVideos = styled.div`
     width: 90%;
   }
 `;
+
+export const RVTitle = styled.h2`
+  margin: 0 auto;
+`;

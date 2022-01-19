@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { VideoContainer } from './VideoList.styles';
 import VideoCard from '../VideoCard';
 import { useGlobalcontext } from '../../context/GlobalContext';
+import Error from '../Error';
+import Loading from '../Loading';
 
 const VideoList = () => {
   const { videos, videos_loading, videos_error, fetchVideos } =
@@ -11,25 +13,24 @@ const VideoList = () => {
     fetchVideos('wizeline');
     // eslint-disable-next-line
     }, []);
+  console.log(videos);
   if (!videos) {
     return null;
   }
 
   if (videos_loading) {
-    return <h2>loading...</h2>;
+    return <Loading />;
   }
 
   if (videos_error) {
-    return <h2>plop</h2>;
+    return <Error />;
   }
 
   return (
     <VideoContainer>
-      {videos
-        //.filter((item) => item.id.kind === 'youtube#video')
-        .map((item) => (
-          <VideoCard key={item.id.videoId} {...item} />
-        ))}
+      {videos.map((item) => (
+        <VideoCard key={item.id.videoId} {...item} />
+      ))}
     </VideoContainer>
   );
 };

@@ -7,18 +7,23 @@ import {
   VideoInfo,
   RelatedVideos,
   SelectedVideo,
+  RVTitle,
 } from './VideoDetail.styles';
 import VideoCard from '../VideoCard/VideoCard.component';
 import { useGlobalcontext } from '../../context/GlobalContext';
 import FavButton from '../FavButton';
 
 const VideoDetail = () => {
-  const { videos, videos_error } = useGlobalcontext();
+  const { videos, videos_error, videos_loading } = useGlobalcontext();
   const { isAuthenticated } = useAuth0();
   const { id } = useParams();
   const history = useHistory();
-  let selected_video = videos.find((item) => item.id.videoId === id);
-  const related = videos.filter(
+  console.log(videos_loading);
+
+  let selected_video,
+    related = [];
+  selected_video = videos.find((item) => item.id.videoId === id);
+  related = videos.filter(
     (item) => item.id.videoId !== selected_video.id.videoId
   );
 
@@ -32,6 +37,7 @@ const VideoDetail = () => {
   }, [videos_error]);
 
   if (!selected_video) {
+    console.log('here');
     return null;
   }
 
@@ -39,10 +45,12 @@ const VideoDetail = () => {
 
   return (
     <DetailWrapper>
-      <SelectedVideo>
+      <SelectedVideo aria-label="Selected video">
         <VideoPlayer src={videoSrc} />
         <VideoInfo>
-          <h3>{selected_video.snippet.title}</h3>
+          <h3 aria-label={selected_video.snippet.title}>
+            {selected_video.snippet.title}
+          </h3>
           <h3>Channel: {selected_video.snippet.channelTitle}</h3>
           <h3>Description: {selected_video.snippet.description}</h3>
           <h3>{isAuthenticated && <FavButton {...selected_video} />}</h3>
@@ -50,7 +58,7 @@ const VideoDetail = () => {
       </SelectedVideo>
 
       <RelatedVideos>
-        <h2>Related videos</h2>
+        <RVTitle>Related videos</RVTitle>
         {related.map((item) => (
           <VideoCard key={item.id.videoId} {...item} />
         ))}

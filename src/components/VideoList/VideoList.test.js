@@ -5,14 +5,13 @@ import { rest } from 'msw';
 import { BrowserRouter } from 'react-router-dom';
 import { GlobalProvider } from '../../context/GlobalContext';
 import VideoList from './VideoList.component';
-import { YT_BASE_URL } from '../../utils/constants';
 import * as videos from '../../utils/mocks/youtube-videos-mock.json';
+
+const url = process.env.REACT_APP_YT_BASE_URL;
 
 const handlers = [
   // fetching videos mock
-  rest.get(`${YT_BASE_URL}`, (req, res, ctx) =>
-    res(ctx.status(200), ctx.json(videos))
-  ),
+  rest.get(`${url}`, (req, res, ctx) => res(ctx.status(200), ctx.json(videos))),
 ];
 
 const server = setupServer(...handlers);

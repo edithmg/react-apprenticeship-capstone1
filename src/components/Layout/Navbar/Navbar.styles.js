@@ -30,7 +30,7 @@ export const Hamburger = styled.div`
     height: 2px;
     width: 1.6rem;
     margin-bottom: 4px;
-    background-color: white;
+    background: white;
   }
   @media (max-width: 768px) {
     display: flex;
@@ -62,12 +62,15 @@ export const Menu = styled.div`
   width: 330px;
   margin-left: auto;
   position: relative;
+  background-color: #af2e33;
   transition: ${({ theme }) => theme.transitionTime};
   @media (max-width: 768px) {
     align-items: flex-end;
     justify-content: center;
     overflow: hidden;
     width: 100%;
+    margin-right: -30px;
+    margin-top: -85px;
     opacity: ${({ isOpen }) => (isOpen ? '1' : '0')};
     height: ${({ isOpen }) => (isOpen ? '150px' : '0px')};
   }

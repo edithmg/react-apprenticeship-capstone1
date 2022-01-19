@@ -1,11 +1,8 @@
 import React from 'react';
 import Card from '../Card';
-import {
-  StyledCardBody,
-  StyledCardContainer,
-} from '../VideoCard/VideoCard.styles';
+import { StyledFavBody, StyledFavContainer } from '../FavCard/FavCard.styles';
 
-const VideoCard = (item) => {
+const FavCard = (item) => {
   const video = {
     id: item.id.videoId,
     title: item.snippet.title,
@@ -13,14 +10,13 @@ const VideoCard = (item) => {
     description: item.snippet.description,
     photo_url: item.snippet.thumbnails.medium.url,
   };
-
   return (
-    <StyledCardBody>
-      <StyledCardContainer>
+    <StyledFavBody>
+      <StyledFavContainer>
         <Card key={video.id} {...video} />
-      </StyledCardContainer>
-    </StyledCardBody>
+      </StyledFavContainer>
+    </StyledFavBody>
   );
 };
 
-export default VideoCard;
+export default FavCard;
