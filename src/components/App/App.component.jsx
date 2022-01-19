@@ -13,7 +13,7 @@ import NotFound from '../../pages/NotFound';
 import useDarkTheme from '../../utils/hooks/useDarkTheme';
 import { lightTheme, darkTheme } from '../Themes';
 import ThemeToggler from '../Layout/ThemeToggler';
-//import { useAuth0 } from '@auth0/auth0-react';
+import FavDetailPage from '../../pages/FavDetail';
 
 const App = () => {
   const [theme, themeToggler] = useDarkTheme();
@@ -42,6 +42,9 @@ const App = () => {
               </Route>
               <Private exact path="/favorites">
                 <FavoritesPage />
+              </Private>
+              <Private exact path="/favorites/:id">
+                <FavDetailPage />
               </Private>
               <Route path="*">
                 <NotFound />

@@ -37,7 +37,6 @@ const VideoDetail = () => {
   }, [videos_error]);
 
   if (!selected_video) {
-    console.log('here');
     return null;
   }
 
