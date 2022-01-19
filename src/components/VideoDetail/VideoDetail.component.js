@@ -14,12 +14,16 @@ import { useGlobalcontext } from '../../context/GlobalContext';
 import FavButton from '../FavButton';
 
 const VideoDetail = () => {
-  const { videos, videos_error } = useGlobalcontext();
+  const { videos, videos_error, videos_loading } = useGlobalcontext();
   const { isAuthenticated } = useAuth0();
   const { id } = useParams();
   const history = useHistory();
-  let selected_video = videos.find((item) => item.id.videoId === id);
-  const related = videos.filter(
+  console.log(videos_loading);
+
+  let selected_video,
+    related = [];
+  selected_video = videos.find((item) => item.id.videoId === id);
+  related = videos.filter(
     (item) => item.id.videoId !== selected_video.id.videoId
   );
 

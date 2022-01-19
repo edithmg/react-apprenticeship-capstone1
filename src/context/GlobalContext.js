@@ -1,13 +1,18 @@
 import axios from 'axios';
 import React, { createContext, useContext, useReducer } from 'react';
 import globalReducer from '../reducers/globalReducer';
-import { GET_VIDEOS, GET_SELECTED_VIDEO } from '../utils/actions';
+import {
+  GET_VIDEOS,
+  GET_SELECTED_VIDEO,
+  GET_RELATED_VIDEOS,
+} from '../utils/actions';
 
 const initialState = {
   videos_loading: false,
   videos_error: false,
   videos: [],
   darkMode: false,
+  items: [],
 };
 
 export const GlobalContext = createContext();
@@ -16,7 +21,7 @@ export const GlobalProvider = ({ children }) => {
 
   //fetching videos
   const fetchVideos = async (searchTerm) => {
-    //console.log(searchTerm);
+    console.log(searchTerm);
     const controller = new AbortController();
     const url = process.env.REACT_APP_YT_BASE_URL;
     try {
@@ -48,12 +53,39 @@ export const GlobalProvider = ({ children }) => {
     dispatch({ type: GET_SELECTED_VIDEO, payload: selected_video });
   };
 
+  const fetchRelatedVideos = async (videoId) => {
+    const controller = new AbortController();
+    const url = process.env.REACT_APP_YT_BASE_URL;
+    try {
+      const response = await axios.get(url, {
+        params: {
+          part: 'snippet',
+          maxResults: 16,
+          key: process.env.REACT_APP_YT_APIKEY,
+          relatedToVideoId: videoId,
+          type: 'video',
+        },
+        signal: controller.signal,
+      });
+      const items = response.data.items;
+      console.log(items);
+
+      dispatch({ type: GET_RELATED_VIDEOS, payload: items });
+    } catch (error) {
+      return;
+    }
+    return () => {
+      controller.abort();
+    };
+  };
+
   return (
     <GlobalContext.Provider
       value={{
         ...state,
         fetchVideos,
         singleVideoSelect,
+        fetchRelatedVideos,
       }}
     >
       {children}

@@ -12,12 +12,12 @@ const Searchbar = () => {
   //search
   const [searchTerm, setSearchTerm] = useState('');
   const handleSearchSubmit = (e) => {
+    e.preventDefault();
     if (searchTerm === '') {
       alert('Please enter video or term to search');
     } else {
       fetchVideos(searchTerm);
     }
-    e.preventDefault();
   };
 
   return (

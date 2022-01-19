@@ -13,6 +13,7 @@ const VideoList = () => {
     fetchVideos('wizeline');
     // eslint-disable-next-line
     }, []);
+  console.log(videos);
   if (!videos) {
     return null;
   }
