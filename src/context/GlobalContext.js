@@ -16,7 +16,7 @@ export const GlobalProvider = ({ children }) => {
 
   //fetching videos
   const fetchVideos = async (searchTerm) => {
-    console.log(searchTerm);
+    //console.log(searchTerm);
     const controller = new AbortController();
     const url = process.env.REACT_APP_YT_BASE_URL;
     try {

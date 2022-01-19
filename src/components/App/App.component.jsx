@@ -18,8 +18,6 @@ import ThemeToggler from '../Layout/ThemeToggler';
 const App = () => {
   const [theme, themeToggler] = useDarkTheme();
   const selectedTheme = theme === 'light' ? lightTheme : darkTheme;
-  //const { isAuthenticated } = useAuth0();
-  //console.log(isAuthenticated);
   return (
     <GlobalProvider>
       <Auth0Provider
