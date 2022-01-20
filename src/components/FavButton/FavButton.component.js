@@ -1,14 +1,17 @@
 import React from 'react';
+import { useParams } from 'react-router';
 import { Star } from './FavButton.styles';
 import { BiDislike, BiLike } from 'react-icons/bi';
 
 const FavButton = (item) => {
+  const { id } = useParams();
+  console.log(item);
   let isFavorite = false;
   let favorites = [];
   if (localStorage.getItem('favorites')) {
     favorites = JSON.parse(localStorage.getItem('favorites'));
   }
-  if (favorites.find((i) => i.videoId === item.id.videoId)) {
+  if (favorites.find((i) => i.videoId === id)) {
     isFavorite = true;
   }
 

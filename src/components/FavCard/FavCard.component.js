@@ -3,6 +3,7 @@ import Card from '../Card';
 import { StyledFavBody, StyledFavContainer } from '../FavCard/FavCard.styles';
 
 const FavCard = (item) => {
+  console.log(item);
   const video = {
     id: item.id.videoId,
     title: item.snippet.title,
